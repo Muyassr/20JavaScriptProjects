@@ -29,9 +29,22 @@ function checkRequired(filedsArr) {
     });
 }
 
+function checkLength(element, min, max) {
+    const name = username.value;
+    if (name.length < min) {
+        showError(username,`${getFieldName(username)} must be more than `+min+` letters`);
+    } else if (name.length > max) {
+        showError(username,`${getFieldName(username)} must be less than `+max+` letters`);
+    } else {
+        showSuccess(element);
+    }
+}
+
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         checkRequired([username, email, password, password2]);
+        checkLength(element, 3, 15);
+        checkLength(element, 6, 25);
         
     });
     
