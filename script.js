@@ -30,22 +30,30 @@ function checkRequired(filedsArr) {
 }
 
 function checkLength(element, min, max) {
-    const name = username.value;
+    const name = element.value;
     if (name.length < min) {
-        showError(username,`${getFieldName(username)} must be more than `+min+` letters`);
+        showError(element,`${getFieldName(username)} must be more than `+min+` letters`);
     } else if (name.length > max) {
-        showError(username,`${getFieldName(username)} must be less than `+max+` letters`);
+        showError(element,`${getFieldName(username)} must be less than `+max+` letters`);
     } else {
         showSuccess(element);
     }
 }
 
+function checkPasswordsMatch(password, password2) {
+    if (password.value===password2.value) {
+
+    } else {
+        showError(password2,`passwords dont match`);
+    }
+} 
+
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         checkRequired([username, email, password, password2]);
-        checkLength(element, 3, 15);
-        checkLength(element, 6, 25);
-        
+        checkLength(username, 3, 15);
+        checkLength(password, 6, 25);
+        checkPasswordsMatch(password, password2);
     });
     
  
